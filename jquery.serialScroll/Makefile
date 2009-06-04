@@ -16,6 +16,3 @@ $(SO_SRC):
 $(SO_MIN):
 	cd $(SO_ROOT) && make min
 	cp $(SO_ROOT)/$@ $@
-	
-#clean:
-#	rm -f $(SO_SRC) $(SO_MIN)

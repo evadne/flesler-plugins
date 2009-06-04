@@ -18,6 +18,7 @@ $(ZIP): $(ZIP_FILES)
 	zip -r9 $(ZIP) $(ZIP_FILES)
 
 $(SRC):
+	# cat $(SRC) | $(add-version) > $(SRC)
 	
 $(SRCV):$(SRC)
 	cp $(SRC) $(SRCV)
@@ -31,6 +32,15 @@ $(MINV):$(MIN)
 	cp $(MIN) $(MINV)
 	
 deploy:$(ZIP) $(SRCV) $(MINV)
+
+# ---Replacements--- #
+# TODO: Improve this crap
+RNUM=[0-9][0-9]*
+define add-version
+@sed -e 's/^\(.*@version \)$(RNUM)\.$(RNUM).$(RNUM)\(.*\)$|/\1$(VER)\2/'
+endef
+
+# ---Cleaning--- #
 
 # Can be extended
 define cmdclean
