@@ -1,2 +1,4 @@
-PLUGIN=localScroll
+PLUGIN=scrollTo
+VER=1.4.2
+
 include ../common.mak
