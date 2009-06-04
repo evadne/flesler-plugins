@@ -34,10 +34,8 @@ $(MINV):$(MIN)
 deploy:$(ZIP) $(SRCV) $(MINV)
 
 # ---Replacements--- #
-# TODO: Improve this crap
-RNUM=[0-9][0-9]*
 define add-version
-@sed -e 's/^\(.*@version \)$(RNUM)\.$(RNUM).$(RNUM)\(.*\)$|/\1$(VER)\2/'
+@sed -e 's/^\(.*@version \)[0-9.]\+\(.*\)$|/\1$(VER)\2/'
 endef
 
 # ---Cleaning--- #
