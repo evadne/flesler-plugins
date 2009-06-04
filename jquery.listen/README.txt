@@ -1,0 +1,2 @@
+jQuery.Listen is not meant to be faster than the regular way, the example should show that using event delegation is as efficient as binding to single elements, but only one handler is used (and only bound once) so it's light, and doesn't require rebinding (annoying!).
+There's a problem with a bug in jQUery 1.2.1, specified in the example.

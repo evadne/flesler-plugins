@@ -1,0 +1,40 @@
+body{ 
+	padding: 0 5px;
+	font-family: Verdana, sans-serif;
+	background-color: #DDD;
+}
+ul, li, h3, h2, h1, p{
+	padding:0;
+	margin:0;
+	list-style:none;
+}
+
+#pane {
+	width:750px;
+	height:300px;
+	margin:50px;
+	overflow:hidden;
+	border:1px black solid;
+}
+
+#content {
+	height:inherit;
+	width:3000px;
+	overflow:hidden;
+}
+	
+	#content div {
+		height:inherit;
+		width:300px;
+		float:left;
+	}
+	
+	#c1 { background-color:red; }
+	
+	#c2 { background-color:blue; }
+	
+	#c3 { background-color:green; }
+	
+	#c4 { background-color:yellow; }
+	
+	#c5 { background-color:orange; }

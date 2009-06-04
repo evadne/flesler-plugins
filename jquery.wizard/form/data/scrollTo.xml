@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<item>
+		<name>selector</name>
+		<text>selector of the overflown element(no quotes) or blank for the window.</text>
+	</item>
+	<item>
+		<name>target</name>
+		<text>where to scroll? type a selector or the exact position(no quotes)</text>
+		<def>#target</def>
+	</item>
+	<item>
+		<name>duration</name>
+		<text>how many milliseconds should the animation last?</text>
+		<def>800</def>
+	</item>
+	<item>
+		<name>easing</name>
+		<text>want an easing function? leave blank for default'</text>
+	</item>
+</root>

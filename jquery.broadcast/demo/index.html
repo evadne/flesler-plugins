@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.Broadcast</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.broadcast.js"></script>
+</head>
+<body>
+	<h1>jQuery.Broadcast</h1>
+	<p>This demo makes more sense if you use Firebug and check the output in the console</p>
+	<p>Both demo and plugin are still under development</p>
+	<script type="text/javascript">
+	if( !this.console )
+		var console = {log:function(){
+			alert( [].join.call(arguments,' ') );
+		}};
+	
+	$('html').bind('before-attr',function( e, attr, value ){
+		console.log( 'preventing attr on ', e.target );
+		// Skip
+		e.preventDefault();
+	});
+	$('body').bind('before-attr',function(e, attr, value){
+		console.log( 'stopping attr\'s propagation on ', e.target );
+		// Scripts in the body won't each the first handler
+		e.stopPropagation();
+	});
+	$('script').bind('attr',function( e , attr, value ){
+		console.log( 'setting', attr, '=', value, 'on', this );
+	});
+	$('script').attr('reached', 'true');
+	</script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+0.8
+- added wrapper:anchor
+- blur is tried to be called on navigators.
+- added a semicolon to the start of the code, to support file concatenation.
+- $.localScroll can be used for navigators.
+- exposed the defaults at $.scrollShow.defaults

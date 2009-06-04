@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.Method</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.method.js"></script>
+	<script type="text/javascript">
+		jQuery(function( $ ){
+			$.method(function one(text){
+				alert( 1 + text );
+			})
+			.before(function zero(text){
+				alert( 0 + text );
+			})
+			.next()
+			.after(function fake(text){
+				alert( 'nooo' + text );
+			}, true )
+			.remove()
+			.after(function two(text){
+				alert( 2 + text );
+			}, true )
+			.after(function(){
+				alert('nooooooo!');
+			}, true )
+			.onlyIf(function( text ){
+				text == ' hi!';
+			})
+			.run(' hi!');
+		});
+	</script>
+	<style type="text/css">
+	</style>
+</head>
+<body>
+</body>
+</html>

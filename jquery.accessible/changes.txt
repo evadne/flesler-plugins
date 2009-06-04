@@ -1,0 +1,7 @@
+0.1
+- First release
+- Made a basic engine for rules.
+- Made a basic engine for tests.
+- Added a few rules (fixes) and many links to check.
+- Added some tests.
+- Made a demo combining fixes and tests.

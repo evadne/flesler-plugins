@@ -1,0 +1,55 @@
+body{
+			background-color:#CCCCCC;
+		}
+		#screen{
+			width:800px;
+			padding:0;
+		}			
+			#screen li{
+				float:left;
+				list-style:none;
+			}
+			#screen .jq-ss-crop{
+				margin:5px 5px;
+				border:1px solid #FFFFCC;
+				float:left;				
+			}
+				#left,#right{
+					font-weight:bolder;
+					font-size:36px;
+					margin-top:115px;
+					display:block;
+					text-decoration:none;
+					color:black;
+				}
+			#view{
+				margin:20px;
+				width:635px;
+				border:1px white solid;
+				height:212px;
+				overflow:hidden;
+				background-color:black;
+			}
+				#images{
+					width:3818px !important;
+					width:3822px;
+					padding:0;
+				}
+					#images li img{
+						border:0;
+					}
+		.clear{
+			clear:left;
+		}
+		#links{
+			border:1px black solid;
+			width:115px;
+			padding:10px 30px;
+		}
+			#links ul, #links li{
+				margin:0;
+				padding:0;
+			}
+			#links h3{
+				margin:10px 0;
+			}

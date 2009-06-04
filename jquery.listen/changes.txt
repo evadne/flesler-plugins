@@ -1,0 +1,52 @@
+1.0.3
+[Feature]
+- Added an exprimental option, Indexer.fn.cache() and $.listen.cache( true/false ).
+- Added support for comma separated selectors
+[Optimization]
+- Got more obsessive with cleanup to avoid memory leaks.
+
+1.0.2
+[Feature]
+- If the handlers return false, e.preventDefault() and e.stopPropagation() are called.
+- Stopping the propagation also stops forced bubbling.
+
+1.0.1
+[Fix]
+- If the indexer was set to bubble, it would bubble up the document, instead of to its listener.
+
+1.0.0
+[Feature]
+- Added Jorn's approach of focusin/focusout. You can now safely listen for blur and focus events.
+- Added $.fn.indexer( event_name ) to get access to the indexer of the first matched element.
+- $.listen.fixes is a hash that maps event/fixedEvent. If you add a fix at $.event.special, add it to this hash and it will work automatically.
+- It's possible to instruct indexers to emulate the natural bubbling like this: $(..).indexer( ... ).bubbles = true, use with discretion, will hit on perfomance.
+- Added support for multiple events separated with spaces.
+[Optimization]
+- Reduced the code size, this release (with all its features) is smaller than the previous one.
+- Added many optimizations for minified code size.
+- Improved the cleaning done on window.onload to avoid memory leaks.
+[Change]
+- $.listen is not used for stopping/restarting the indexers, use $.fn.indexer( ... ).(start|stop)() instead.
+- Changed the licensing from GPL to GPL+MIT.
+[Fix]
+- The [].splice.call(arguments,..) wasn't working in Opera.
+
+0.8.3
+- Added semicolon at the beggining, for safe file concatenation
+- Improved the selector matching regex.
+- Made the regex public for easy modification.
+- Added a check for an anchor being the parentNode, then it is checked too.
+- Added support for namespaced events when checking if it's legal.
+
+0.8.2
+- Minor changes
+
+0.8.1
+- Minor changes
+
+0.8.0
+-An ID for the listeners, is no longer needed or setted, jQuery.data is used instead.
+-The order of the parameters, was changed for simpler use.
+-Listeners can be stopped and restarted.
+-The cleanup on the unload event was wrong.
+-The code was simplified a bit.

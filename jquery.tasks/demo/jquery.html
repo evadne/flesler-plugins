@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.Tasks</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../tasks.js"></script>
+	<script type="text/javascript" src="../jquery.tasks.js"></script>
+	<style type="text/css">
+		div {
+			width:200px;
+			height:200px;
+			position:relative;
+		}
+		#a {
+			background:red;
+		}
+		
+		#b {
+			background:green;
+		}
+		
+		#c {
+			background:blue;
+		}
+	</style>
+</head>
+<body>
+	<h1>jQuery.Tasks</h1>
+	
+	<div id="a">&nbsp;</div>
+	<div id="b">&nbsp;</div>
+	<div id="c">&nbsp;</div>
+	
+	<script type="text/javascript">	
+		if( !this.console )
+			var console = {log:function(){}};
+		
+		var anim = $.sequence(
+			$.tween('#a',{ left:500 }, 3000),
+			$.func(console.log, 'A finished'),
+			$.parallel(
+				$.tween('#b',{ left:500 }, 3000),
+				$.sequence(
+					$.wait( 500 ),
+					$.tween('#c',{ left:500 }, 3000)
+				)
+			),
+			$.func(console.log, 'B & C finished'),
+			$.parallel(
+				$.tween('#a',{ left:0 }, 1500),
+				$.sequence(
+					$.wait( 500 ),
+					$.tween('#b',{ left:0 }, 1500)
+				),
+				$.sequence(
+					$.wait( 1000 ),
+					$.tween('#c',{ left:0 }, 1500)
+				)
+			)			
+		);
+		$.sequence(anim,anim).start();
+		//anim.start();
+	</script>
+	
+	<hr />
+	<small>Copyright (c) 2009 - Ariel Flesler &lt;aflesler[at]gmail[dot]com&gt;</small>
+</body>
+</html>

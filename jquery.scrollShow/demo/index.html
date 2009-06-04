@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" view="text/html; charset=iso-8859-1" />
+	<title>jQuery.ScrollShow</title>
+	<meta name="keywords" content="javascript, jquery, plugins, scroll, to, slideshow, scrollTo, images, smooth, animation, overflow, element, effect, ariel, flesler, customizable" />
+	<meta name="description" content="Demo of jQuery.ScrollShow. A jQuery plugin to animate slideshows using a scrolling effect, made by Ariel Flesler." />
+	<meta name="robots" content="index,follow" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="jquery.scrollTo-min.js"></script>
+	<script type="text/javascript" src="../jquery.scrollShow.js"></script>	
+	<script type="text/javascript">
+		jQuery(function( $ ){
+			//borrowed from jQuery easing plugin
+			//http://gsgd.co.uk/sandbox/jquery.easing.php
+			$.easing.backout = function(x, t, b, c, d){
+				var s=1.70158;
+				return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+			};
+			
+			$('#screen').scrollShow({
+				view:'#view',
+				content:'#images',
+				easing:'backout',
+				wrappers:'link,crop',
+				navigators:'a[id]',
+				navigationMode:'sr',
+				circular:true,
+				start:0
+			});
+		 });
+	</script>
+</head>
+<body>
+	<ul id="screen">
+		<li><a id="left" href="#">&lt;&lt;</a></li>
+		<li id="view">
+			<ul id="images">
+				<li><img id="img2" src="http://www.landscapedvd.com/desktops/pictures/redgreenblue384x307.jpg" /></li>
+				<li><img id="img3" src="http://www.traveladventures.org/continents/asia/images/qinghai-landscape07.jpg" /></li>
+				<li><img id="img4" src="http://www.fotothing.com/photos/36c/36c36ee208c7ba066c71e31053be8ff1.jpg" /></li>
+				<li><img id="img5" src="http://www.nmdepot.com/tropic_landscape.jpg" /></li>
+				<li><img id="img6" src="http://blogs.bootsnall.com/borderlines/archives/images/geysers_landscape.JPG" /></li>
+				<li><img id="img7" src="http://www.c4des.com/c4desgaleria/albums/userpics/13228/normal_Landscape.jpg" /></li>
+				<li><img id="img8" src="http://www.whale-images.com/data/media/2/landscape-pictures_21.jpg" /></li>
+				<li><img id="img9" src="http://mit.ocw.universia.net/4.125/NR/rdonlyres/Global/8/8B3899FF-0F2A-46F6-BBCB-92A3FA43DADB/0/chp_landscape_rockport_quarry_1.jpg" /></li>
+				<li><img id="img10" src="http://www.art-prints-on-demand.com/images/product-pics/artist/hi/05v0151a.jpg" /></li>
+				<li><img id="img11" src="http://bp0.blogger.com/_52G5g35IxUw/Rs6wTAtYgGI/AAAAAAAAAUw/Vp2Yy65uvas/s400/Blautopf,+Landscape,2001.jpg" /></li>
+				<li><img id="img12" src="http://bp2.blogger.com/_WiUpwy38TTc/RvePQ2sqE4I/AAAAAAAAA4w/eKqbgTDVJRs/s400/P8220194.JPG" /></li>
+				<li><img id="img13" src="http://www.fotothing.com/photos/e41/e41d135beb7341bdbc1458fbe4890b65.jpg" /></li>
+				<li><img id="img14" src="http://www.manuadventures.com/images/landscape05.jpg" /></li>
+				<li><img id="img1" src="http://www.manuadventures.com/images/landscape08.jpg" /></li>
+				<li><img id="img15" src="http://gallery.photo.net/photo/5258608-lg.jpg" /></li>
+				<li><img id="img16" src="http://davidbyrne.typepad.com/photos/uncategorized/07_04_06_b_flat_landscape.jpg" /></li>
+				<li><img id="img17" src="http://robotics.nasa.gov/courses/fall2003/images/Landscape3.jpg" /></li>
+				<li><img id="img18" src="http://www.fotothing.com/photos/0be/0bedf43be5fed0b067a6086af1be587c.jpg" /></li>
+			</ul>
+		</li>
+		<li><a id="right" href="#">&gt;&gt;</a></li>
+	</ul>
+	<div class="clear">&nbsp;</div>
+	<div id="links">
+		<h3>Links</h3>
+		<ul>
+			<li><a target="_blank" href="http://plugins.jquery.com/project/ScrollShow">Project Page</a></li>
+			<li><a target="_blank" href="http://flesler.blogspot.com/2007/10/jqueryscrollshow.html">Main blog article</a></li>
+			<li><a href="http://flesler.webs.com/jQuery.ScrollTo/">ScrollTo Demo</a></li>
+			<li><a href="http://flesler.webs.com/jQuery.LocalScroll/">LocalScroll Demo</a></li>
+		</ul>
+	</div>
+</body>
+</html>

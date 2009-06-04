@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.Plugin</title>
+	<meta name="keywords" content="javascript, jquery, plugins, manager, ariel, flesler" />
+	<meta name="description" content="Demo of jQuery.Plugin, made by Ariel Flesler." />
+	<meta name="robots" content="index,follow" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.plugin.js"></script>
+	<script type="text/javascript">
+		$.plugin.defaults.base = 'jquery.';
+		$.plugin.defaults.ext = '-min.js';
+		
+		$.plugin.register( 'scrollTo', {
+			$:'scrollTo', fn:'scrollTo'
+		}, {
+			id:'scroll-to'
+		});
+		
+		$.plugin.register( 'localScroll', {
+			$:'localScroll', fn:'localScroll' 
+		},{
+			require:'scroll-to'
+		});
+		
+		$.plugin.register( 'serialScroll', {
+			$:'serialScroll', fn:'serialScroll' 
+		},{
+			require:'scroll-to'
+		});
+		
+		jQuery(function( $ ){
+			
+			$.plugin
+				.bind('loading', function( e, plugin ){
+					$('#state').text('loading '+plugin.url);
+				})
+				.bind('loaded', function( e, plugin ){
+					$('#state').text('loaded '+plugin.url);
+				})
+			
+			$.localScroll();
+			
+		});
+	</script>
+</head>
+<body style="height:4000px">
+	<h1>jQuery.Plugin&nbsp;<strong>by Ariel Flesler</strong></h1>
+	<div id="links" class="part">
+		<h3>Links</h3>
+		<ul>
+			<li><a target="_blank" href="http://plugins.jquery.com/project/Plugin">Project Page</a></li>
+			<li><a target="_blank" href="">Main blog article</a></li>
+		</ul>
+	</div>
+	<strong class="state">State:<span id="state">&nbsp;</span></strong>
+	<button onclick="$('a').fake()">Hola</button>
+	<h2>Mark 1</h2>
+	<h2>Mark 2</h2>
+	<h2>Mark 3</h2>
+	<h2>Mark 4</h2>
+	<h2>Mark 5</h2>
+</body>
+</html>

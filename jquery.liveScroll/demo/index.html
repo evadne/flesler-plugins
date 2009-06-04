@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.LiveScroll</title>
+	<meta name="keywords" content="javascript, jquery, plugins, scroll, anchor, to, navigation, scrollTo, smooth, animation, overflow, element, window, effect, lazy, ariel, flesler, customizable" />
+	<meta name="description" content="Demo of jQuery.LiveScroll. Made by Ariel Flesler." />
+	<meta name="robots" content="index,follow" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.scrollTo.js"></script>
+	<script type="text/javascript" src="../jquery.liveScroll.js"></script>
+	<script type="text/javascript">
+		jQuery(function( $ ){
+			$('body').animate({a:}, {duration:9e9,step:function(v){
+				$('#text').text(v);
+			}});
+		});
+	</script>
+</head>
+<body>
+	<h1>jQuery.LiveScroll <strong>by Ariel Flesler</strong></h1>
+	<p>Value is:<span id="text">&nbsp;</span></p>
+	<div id="pane">
+		<div id="content">
+			<div id="c1">&nbsp;</div>
+			<div id="c2">&nbsp;</div>
+			<div id="c3">&nbsp;</div>
+			<div id="c4">&nbsp;</div>
+		</div>
+	</div>
+</body>
+</html>

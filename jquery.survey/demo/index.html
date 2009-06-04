@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.Survey</title>
+	<meta name="keywords" content="javascript, jquery, plugins, survey, poll, generation, custom, json, questions, answers, options, xml, ariel, flesler" />
+	<meta name="description" content="Demo of jQuery.Survey. A jQuery plugin to generate surveys, made by Ariel Flesler." />
+	<meta name="robots" content="index,follow" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.survey.js"></script>
+	<script type="text/javascript" src="../jquery.survey.built-in.js"></script>
+	<script type="text/javascript">
+		var survey = [
+			{id:'name', type:'line', def:'John Doe', title:'What\'s your full name ?', cssClass:'text'},
+			{id:'age', type:'select', def:18, title:'How old are you ?', from:0, to:99 },
+			{id:'country', type:'select', title:'Where are you from', texts:[ 'US', 'UK', 'Other' ] },
+			{id:'happy', type:'bool', def:false, title:'Are you happy ?', value:'Yes!'},
+			{id:'why-happy', type:'line', title:'Really ? Why ?', require:[{id:'happy',value:true}], cssClass:'text' },
+			{id:'gender', type:'choice', def:'M', title:'Gender', values:[ 'F', 'M', '?' ] },
+			{id:'about', type:'paragraph', rows:2, title:'Tell us more about you', cssClass:'text'},
+			{id:'rate', type:'choice', def:3, title:'Please rate us!', from:1, to:5 }
+		];
+		$(function(){
+			survey = $.survey({
+				data:survey/*,//this onUpdate generates a summary of the variables, no need for this in production
+				onUpdate:function( key, value, answers ){
+					var str = [];
+				 	$.each( answers, function( id, val ){
+						str.push( '<h2>' + id + '</h2><p>' + val + '</p>' );
+			 		});
+			 		$('#summary').html( '<li>' + str.join('</li><li>') + '</li>' );
+				}*/
+			});
+			survey.build('#survey');
+		});
+	</script>
+</head>
+<body>
+	<h1>jQuery.Survey&nbsp;<strong>by Ariel Flesler</strong></h1>
+	
+	<div id="links" class="part">
+		<h3>Links</h3>
+		<ul>
+			<li><a target="_blank" href="http://plugins.jquery.com/project/Survey">Project Page</a></li>
+		</ul>
+	</div>
+	<form method="post">
+		<ol id="survey"></ol>
+		<input type="submit" id="submit" />
+	</form>
+	<ul id="summary"></ul>
+</body>
+</html>

@@ -1,0 +1,8 @@
+1.0.1
+[Bug]
+- The type 'html' was missing.
+[Enhancement]
+- The filter function can reference the settings object by the 'this'.
+
+1.0.0
+- First Release

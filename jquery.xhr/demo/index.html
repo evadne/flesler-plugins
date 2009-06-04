@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.XHR</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.xhr.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		function log( method, args ){
+			jQuery('body').append( '<p><u>Method:</u> '+ method + '<br /> <u>arguments:</u> ' + [].join.call(args,', ')  + '</p>' );
+		};
+		
+		jQuery.xhr.register( 'fake_xhr', function( settings ){
+			var xhr = {
+				status:200,
+				readyState:4,
+				responseText:'This is the response!!'
+			};
+			jQuery.each('open,setRequestHeader,abort,getResponseHeader,send'.split(','),function(i,method){
+				xhr[method] = function(){
+					log(method, arguments);
+				};
+			});
+			return xhr;
+		});
+		jQuery.ajax({
+			transport:'fake_xhr',
+			url:'jquery.xhr.js',
+			data:'a=1&b=2',
+			type:'post',
+			success:function( res ){
+				log('success', arguments);
+			}
+		});
+	</script>
+</body>
+</html>

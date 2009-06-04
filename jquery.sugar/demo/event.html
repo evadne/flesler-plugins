@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.Sugar</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.sugar.js"></script>
+	<style type="text/css">
+		html,body{
+			overflow:hidden;
+			background:black;
+		}
+		#obj{
+			font-size: 30px;
+			font-family:Verdana;
+			text-align:center;
+			
+			padding:50px 0;
+			width:200px;
+			
+			position:absolute;
+			top:0;
+			left:0;
+			
+			background:green;
+			border:3px yellow solid;
+			color:yellow;
+			
+			cursor:pointer;
+		}
+	</style>
+</head>
+<body>
+	<div id="obj">
+		Come here!
+	</div>	
+
+	<script type="text/javascript">
+
+		$('#obj')
+			.when('mouseover')
+				.text('Welcome!')
+			.done()
+			.when('mouseout')
+				.text('Don\'t go!')
+			.done()
+			.when('click')
+				.text('Ouch!')
+			.done();
+
+	// Same as with on()
+	/*
+		$('#obj')
+			.on('mouseover')
+				.text('Welcome!')
+			.done()
+			.on('mouseout')
+				.text('Don\'t go!')
+			.done()
+			.on('click')
+				.text('Ouch!')
+			.done();
+	*/
+	</script>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.Sugar</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.sugar.js"></script>
+	<style type="text/css">
+		html,body{
+			overflow:hidden;
+			background:black;
+		}
+		#obj{
+			font-size: 30px;
+			font-family:Verdana;
+			text-align:center;
+			
+			padding:50px 0;
+			width:200px;
+			
+			position:absolute;
+			top:0;
+			left:0;
+			
+			background:green;
+			border:3px yellow solid;
+			color:yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="obj">&nbsp;</div>	
+	<script type="text/javascript">
+		$.fn.moveTo = function( x, y, speed, callback ){
+			return this.animate({ left:x, top:y }, speed, callback );
+		};
+		
+		var $elem = $('#obj'),
+			speed = 'medium',
+			endX = $(window).width() - $elem.width(),
+			endY = $(window).height() - $elem[0].offsetHeight;
+	
+		$elem
+			.text('Ready').wait(1500).then()
+			.text('Set').wait(1500).then()
+			.text('Go!').wait(500).then()
+				.moveTo( endX,    0, speed )
+				.moveTo( endX, endY, speed )
+				.moveTo(    0, endY, speed )
+				.moveTo(    0,    0, speed )						
+			.then().wait(500)
+			.then().text('My head!');
+
+		// Ending .done()'s can be omitted
+	</script>
+</body>
+</html>

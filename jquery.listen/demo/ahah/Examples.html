@@ -1,0 +1,19 @@
+<div class="navigation">
+	<a class="anchor" href="ahah/Home.html">&lt;</a>
+	<a class="page anchor" href="ahah/Home.html">Home</a>
+	<span>Examples</span>
+	<a class="page anchor" href="ahah/Extra.html">Extra</a>
+	<a class="arrow anchor" href="ahah/Extra.html">&gt;</a>
+</div>
+<div class="text">
+<pre>jQuery('table').listen( 'click', 'tr', function(){
+    alert('you clicked a row!!');
+});	</pre>
+<pre>jQuery.listen( 'click', 'tr', function(){
+    alert('you clicked a row!!');
+});	</pre>
+<pre>//tables won't listen for clicks anymore
+jQuery('table').listen( 'click', false );
+//restart these listeners, all previous bindings remain..
+jQuery('table').listen( 'click', true );</pre>
+</div>

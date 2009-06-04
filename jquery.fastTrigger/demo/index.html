@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.FastTrigger</title>
+	<meta name="keywords" content="javascript, jquery, plugins, events, trigger, fast, fastTrigger, handler, optimization, ariel, flesler" />
+	<meta name="description" content="Demo of jQuery.FastTrigger. An alternative method to trigger events faster with jQuery, made by Ariel Flesler." />
+	<meta name="robots" content="index,follow" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.fastTrigger.js"></script>
+</head>
+<body>
+	<h1>jQuery.FastTrigger&nbsp;<strong>by Ariel Flesler</strong></h1>
+	
+	<div id="links" class="part">
+		<h3>Links</h3>
+		<ul>
+			<li><a target="_blank" href="http://plugins.jquery.com/project/FastTrigger">Project Page</a></li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="../console.js"></script>
+	<script type="text/javascript">
+		(function(){
+			function bind(num){
+				$elems.bind('click.'+num, function(){ false && console.log(num); });
+			};
+			function test(){
+				for( var i=0; i < times; i++ )
+					$elems.fastTrigger('click');
+			};
+			function test2(){
+				for( var i=0; i < times; i++ )
+					$elems.trigger('click');
+			};
+			var $elems = $('#links,h1,h3'), binds = 5, times = 5e3, attempts = 5;
+			
+			while( binds-- )
+				bind(binds);
+				
+			/*console.time('regular');
+			for( i=0; i < times; i++ )
+				$elems.trigger('click');
+			console.timeEnd('regular');*/
+			
+			$elems.click(function(){ false && console.log('none') });
+			console.benchmark( test, attempts, 'fast', function(){
+				//setTimeout(function(){
+				//	console.benchmark( test2, attempts, 'regular' );
+				//},1000);
+			});
+			var a = 1;
+		})();
+	</script>
+</body>
+</html>

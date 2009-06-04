@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>Tasks</title>
+	<script type="text/javascript" src="../tasks.js"></script>
+</head>
+<body>
+	<h1>Tasks</h1>
+	<p>Time Factor is: <span id="factor">1.00</span> <button onclick="factor(-1);return false">-</button> <button onclick="factor(1);return false">+</button> &nbsp;&nbsp;&nbsp; Elapsed Time: <span id="elapsed">00:00:00</span></p>
+	
+	<div id="square" style="height:200px;width:200px;background-color:red">&nbsp;</div>
+	
+	<ul id="logs"></ul>
+	
+	<hr />
+	<small>Copyright (c) 2009 - Ariel Flesler &lt;aflesler[at]gmail[dot]com&gt;</small>
+	
+	<script type="text/javascript">	
+		// Simple Tween Class
+		
+		var Tween = TimeBasedTask.extend(function(elem, duration, attrs, unit, from){
+			this.base(duration);
+			
+			this.elem = elem;
+			this.attrs = attrs;
+			this.unit = unit || '';
+			this.from = from || {};
+		},{
+			start:function(){
+				this.base();
+				for( var key in this.attrs ){
+					this.from[key] = key in this.from ? this.from[key] :
+						parseFloat(this.getTarget(key)[key]) || 0;
+				}
+			},
+			getTarget:function(attr){
+				var elem = this.elem;
+				return elem.style && attr in elem.style ? elem.style : elem;
+			},
+			update:function(millis){
+				this.base(millis);
+				
+				var progress = Math.min(1,this.elapsed / this.duration);
+
+				for( var key in this.attrs ){
+					var obj = this.getTarget(key),
+						start = this.from[key];
+					
+					obj[key] = start + (this.attrs[key] - start) * progress + this.unit;
+				}
+				
+				this.checkComplete();
+			},
+			clone:function(){
+				return new Tween(this.elem, this.duration, this.attrs, this.unit, this.from);
+			}
+		});
+		
+		var square = document.getElementById('square');
+
+		// Real Tasks
+		
+		var bender = new TimeBender();		
+		bender.add(new Loop(new Sequence(
+			new Tween(square, 1000, {width:400}, 'px'),
+			new Wait(400),
+			new Tween(square, 1000, {width:200}, 'px'),
+			new Wait(400),
+			new Tween(square, 1000, {height:400}, 'px'),
+			new Wait(400),
+			new Tween(square, 1000, {height:200}, 'px'),
+			new Wait(400)
+		)));
+		
+		bender.add(new Loop(
+			new Timeout(updateTime, 30, 'elapsed')
+		));
+		
+		var runner = new TaskRunner(5);
+		runner.add(bender);
+		runner.start();
+		
+		// Misc Functions
+		
+		function factor( sign ){
+			if( sign == -1 && bender.factor < 0.1 )
+				return;
+			bender.factor += 0.1 * sign;
+			document.getElementById('factor').innerHTML = bender.factor.toFixed(2);
+		};
+		
+		function updateTime( id ){
+			document.getElementById(id).innerHTML = toTime(bender.elapsed);
+		};
+		
+		function toTime( millis ){
+			var ms = millis % 1000,
+				secs,
+				mins;
+			
+			millis -= ms;
+			millis /= 1000;
+
+			secs = millis % 60;
+			millis -= secs;
+			millis /= 60;
+			mins = millis;
+			
+			return [pad(mins),pad(secs),pad(ms)].join(':');
+		};
+		
+		function pad(num){
+			return (num <= 9 ? '0' : '') + num;
+		};
+	</script>
+</body>
+</html>

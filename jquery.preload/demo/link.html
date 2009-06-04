@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="robots" content="index,follow" />
+	<meta name="keyword" content="jquery, plugins, preload, images, placeholder, rollover, placeholder, loading, callbacks, threshold, sequential, url, onload, onerror, oncomplete, links, versatile, customizable, multifunctional, ariel, flesler" />
+	<meta name="description" content='"Link mode" demo of jQuery Preload. An advanced multi-functional preloader, that has 4 modes integrated. Each mode suits a different, common situation.' />
+	<title>jQuery.Preload - Link Mode</title>
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.preload.js"></script>
+	<script type="text/javascript">
+		/**
+		 * This plugin can be used in 4 ways, this is only 1. Make sure to check
+		 * the other 3 links as well to see all the Modes.
+		 */
+		jQuery(function( $ ){			
+			var $links = $('#images a');
+			var $preview = $('#preview');
+			
+			//this mode doesn't require any setting, can have though
+			$links.preload({ threshold:2 }); //same as $.preload( $links, { threshold:2 } );
+			
+			$links.mouseover(function(){
+				$preview.attr('src', this.href);
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>jQuery.Preload&nbsp;<strong>by Ariel Flesler</strong></h1>
+	<h2 class="title">"Link Mode" Demo</h2>
+	<div id="pane">
+		<ul id="images">
+			<li><a href="http://tn3-1.deviantart.com/fs24/300W/f/2008/028/f/4/Equinox_by_alexiuss.jpg" target="link-thumbs">Equinox - by alexiuss</a></li>
+			<li><a href="http://tn3-2.deviantart.com/fs23/300W/f/2008/028/5/c/View_From_the_Rock_Bridge_by_angrymikko.jpg" target="link-thumbs">View from the... - by angrymikko</a></li>
+			<li><a href="http://tn3-2.deviantart.com/fs23/300W/f/2008/028/5/6/The_Long_Way_Home_8_by_wb_skinner.jpg" target="link-thumbs">The Long way Home - by wb skinner</a></li>
+			<li><a href="http://tn3-2.deviantart.com/fs22/300W/f/2008/028/0/6/Blow__wind__blow____by_Kleemass.jpg" target="link-thumbs">Blow Wind Blow - by Kleemass</a></li>
+			<li><a href="http://tn3-2.deviantart.com/fs24/300W/i/2008/028/e/7/A_slow_and_quiet_sabbath_by_ploop26.jpg" target="link-thumbs">A Slow And Quiet Sabbath - by ploop26</a></li>
+			<li><a href="http://tn3-2.deviantart.com/fs23/300W/f/2008/028/8/5/Summer_Rain_by_FrozenStarRo.jpg" target="link-thumbs">Summer Rain - by FrozenStarRo</a></li>
+			<li><a href="http://tn3-1.deviantart.com/fs22/300W/f/2008/028/a/4/a4852929114989f5.jpg" target="link-thumbs">Fractured Mind - by timeodd</a></li>
+		</ul>
+		<img id="preview" src="http://tn3-1.deviantart.com/fs24/300W/f/2008/028/f/4/Equinox_by_alexiuss.jpg" />
+	</div>
+	<div id="links">
+		<h3>Links</h3>
+		<ul>
+			<li><a target="_blank" href="http://plugins.jquery.com/project/Preload">Project Page</a></li>
+			<li><a target="_blank" href="http://flesler.blogspot.com/2008/01/jquerypreload.html">Blog entry</a></li>
+			<li><a rel="sibling" href="url.html">URL Mode</a><span class="mark">&lt;&lt;</span></li>
+			<li><a rel="sibling" href="placeholder.html">Placeholder Mode</a><span class="mark">&lt;&lt;</span></li>
+			<li><a rel="sibling" href="rollover.html">Rollover Mode</a><span class="mark">&lt;&lt;</span></li>
+		</ul>
+	</div>
+	<div id="code-sample">
+		<h3>Code Sample</h3>
+		<pre >$.preload( '#images a' );
+       same as
+$('#images a').preload();
+		</pre>
+	</div>
+</body>
+</html>

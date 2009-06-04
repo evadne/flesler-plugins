@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="robots" content="index,follow" />
+	<meta name="keyword" content="jquery, plugins, preload, images, placeholder, rollover, placeholder, loading, callbacks, threshold, sequential, url, onload, onerror, oncomplete, links, versatile, customizable, multifunctional, ariel, flesler" />
+	<meta name="description" content='"Placeholder mode" demo of jQuery Preload. An advanced multi-functional preloader, that has 4 modes integrated. Each mode suits a different, common situation.' />
+	<title>jQuery.Preload - Placeholder Mode</title>
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.preload.js"></script>
+	<script type="text/javascript">
+		/**
+		 * This plugin can be used in 4 ways, this is only 1. Make sure to check
+		 * the other 3 links as well to see all the Modes.
+		 */
+		jQuery(function( $ ){			
+			$('#summary').fadeIn('slow');
+			
+			/**
+			 * All the functions below, are used to update the summary div
+			 * That is not the objective of the plugin, the really important part 
+			 * is the one right below. The option placeholder, and threshold.
+			 */
+			$.preload( '#ph-images img', {//the first argument is a selector to the images
+				onRequest:request,
+				onComplete:complete,
+				onFinish:finish,
+				placeholder:'img/placeholder.jpg',//this is the really important option
+				notFound:'img/notfound.jpg',//optional image if an image wasn't found
+				threshold:1 //'1' is the default, how many at a time, to load.
+			});
+			
+			function update( data ){
+				$('#done').html( ''+data.done );
+				$('#total').html( ''+data.total );
+				$('#loaded').html( ''+data.loaded );
+				$('#failed').html( ''+data.failed );
+			};
+			function complete( data ){
+				update( data );
+				$('#image-next').html( 'none' );//reset the "loading: xxxx"
+				$('#image-loaded').html( data.image );
+			};
+			function request( data ){
+				update( data );
+				$('#image-next').html( data.image );//set the "loading: xxxx"
+			};
+			function finish(){//hide the summary
+				$('#summary').fadeOut('slow');
+			};
+		});
+	</script>
+	<style type="text/css">
+		
+	</style>
+</head>
+<body>
+	<h1>jQuery.Preload&nbsp;<strong>by Ariel Flesler</strong></h1>
+	<h2 class="title">"Placeholder Mode" Demo</h2>
+	<div id="ph-images">
+		<img src="http://i120.photobucket.com/albums/o171/kitty_of_ice/anime/cat.jpg" />
+		<img src="http://fc.deviantart.com/fs4/i/2004/261/e/f/M_S_Z_O_M_R_by_LimeSphere.jpg" />
+		<img src="http://i9.photobucket.com/albums/a83/killerkat411/bands%20and%20music/guitarheader.jpg" />
+		<img src="http://www.someSite.com/notAnImage.php" />
+		<img src="http://i62.photobucket.com/albums/h101/K34PICS/Nature%20and%20Outdoors/Norway3.jpg" />
+		<img src="http://i90.photobucket.com/albums/k251/ammar456/Blog/funny/ketchup.jpg" />
+		<img src="http://tn3-2.deviantart.com/fs22/300W/f/2008/028/0/6/Blow__wind__blow____by_Kleemass.jpg" />
+		<img src="http://www.someOtherSite.com/NonExistingURL.jpg" />
+		<img src="http://i62.photobucket.com/albums/h101/K34PICS/Nature%20and%20Outdoors/Boat1.jpg" />
+	</div>
+	<div id="summary">
+		<p>Done:&nbsp;<span id="done">0</span>/<span id="total">?</span></p>
+		<p><span id="loaded">0</span>&nbsp;were loaded successfully.</p>
+		<p><span id="failed">0</span>&nbsp;couldn't be loaded.</p>
+		<p>Last loaded:&nbsp;<span id="image-loaded">none</span></p>
+		<p>Loading:&nbsp;<span id="image-next">none</span></p>
+	</div>
+	<div id="links">
+		<h3>Links</h3>
+		<ul>
+			<li><a target="_blank" href="http://plugins.jquery.com/project/Preload">Project Page</a></li>
+			<li><a target="_blank" href="http://flesler.blogspot.com/2008/01/jquerypreload.html">Blog entry</a></li>
+			<li><a rel="sibling" href="url.html">URL Mode</a><span class="mark">&lt;&lt;</span></li>
+			<li><a rel="sibling" href="link.html">Link Mode</a><span class="mark">&lt;&lt;</span></li>
+			<li><a rel="sibling" href="rollover.html">Rollover Mode</a><span class="mark">&lt;&lt;</span></li>
+		</ul>
+	</div>
+	<div id="code-sample">
+		<h3>Code Sample</h3>
+	<pre >$.preload( '#images img', {
+    placeholder:'placeholder.jpg',
+    notFound:'notfound.jpg'
+});
+       same as
+
+$('#images img').preload({
+    placeholder:'placeholder.jpg',
+    notFound:'notfound.jpg'
+});</pre>
+	</div>
+</body>
+</html>

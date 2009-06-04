@@ -1,0 +1,26 @@
+1.1.2
+[Change]
+- The scope(this) is the element that triggered the event again.
+[Feature]
+- Added support for absolute selectors ( parent child > descendant + .class )
+
+1.1.1
+- The hash wasn't being cloned, that's an error.
+- Added support for whitespace separated events.
+- Now the handler is at $.intercept.handle.
+- $.intercept accepts the same arguments but intercepts globally( using <html> ). No need to wait for document ready.
+
+1.1.0
+ -Added semicolon to the start, for safe file concatenation
+ -Changed license from GPL to GPL+MIT
+ -This release is compatible with jQuery 1.2.x.
+ -Removed the option 'delegate'. Seemed confusing.
+ -Made the code much simpler and shorter.
+ -Exposed the handler as $.intercept so it can be unbound.
+ -If a handler returns false, that will stop the event (like with regular handlers)
+ -Added a 3 arguments overload $(...).intercept( event, selector, handler );
+ -The scope(this) of the handlers is the intercepter and no longer the interceptee, use e.target instead.
+
+1.0.2
+- new 'delegate' option.
+- the selector 'self' now is checked in the order it is added.

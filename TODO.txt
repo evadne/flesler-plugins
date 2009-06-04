@@ -1,0 +1,20 @@
+Broadcast & Tasks
+- RELEASE IT!
+
+XHR and AjaxFilter
+- Announce them on the blog
+
+GENERAL
+- Fix uses of nodeName as it won't work on xml+xhtml (Preload and Listen surely have)
+
+SerialScroll
+- The event goto can accept a DOMElement (an item).
+- Let the 'this' of the callbacks be the settings object.
+- Thus make each instance of the plugin have a clone of the settings.
+- Snippet to highlight the active link.
+
+FastTrigger
+- Forgot 'shiftKey' in the fake event (is this neccessary?) nah!
+
+Listen
+- nodeName.toUpperCase() so it works with application/xhtml+xml

@@ -1,0 +1,13 @@
+[
+	{name:'selector', text:'selector of the overflown element(no quotes) or blank for the window.'},
+	{name:'target', text:'where to scroll? type a selector or the exact position(no quotes)', def:'#target'},
+	{name:'duration', text:'how many milliseconds should the animation last?', def:'800'},
+	{name:'easing', text:'want an easing function? leave blank for default'},
+	{name:'axis', text:'on which axis to animate: x, y, xy or yx. The order matters if you want to queue',def:'y'},
+	{name:'margin', text:'do want to stop when the margin is reached ?', bool:true},
+	{name:'offset', text:'if you want to add/deduct from the end position, specify a number or a hash in this form:{top:xxx, left:yyy}.'},
+	{name:'over', text:'if you want to add/deduct a fraction of the target\'s height/width, specify a number or a hash\n in this form:{top:xxx, left:yyy}.\n Examples:0.3, {top:-0.1, left:1}.'},
+	{name:'queue', text:'(only if you chose both "axis") do you want to animate one, and then the other ?', bool:true},
+	{name:'onAfterFirst', text:'are you scrolling both axes, and you want a callback after the first animation ended ?', requires:'queue',bool:true},
+	{name:'onAfter', text:'do you want a callback after the whole animation ended ?', bool:true}
+]

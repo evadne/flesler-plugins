@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<meta name="robots" content="index,follow" />
+	<meta name="keyword" content="jquery, plugins, preload, images, placeholder, rollover, placeholder, loading, callbacks, threshold, sequential, url, onload, onerror, oncomplete, links, versatile, customizable, multifunctional, ariel, flesler" />
+	<meta name="description" content='"Rollover mode" demo of jQuery Preload. An advanced multi-functional preloader, that has 4 modes integrated. Each mode suits a different, common situation.' />
+	<title>jQuery.Preload - Rollover Mode</title>
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.preload.js"></script>
+	<script type="text/javascript">
+		/**
+		 * This plugin can be used in 4 ways, this is only 1. Make sure to check
+		 * the other 3 links as well to see all the Modes.
+		 */
+		jQuery(function( $ ){			
+			$.preload( '#rollover-images img', {
+			    find:'.jpg',
+			    replace:'_over.jpg'
+			});
+			/*		or
+			$('#rollover-images img').preload({
+				find:'.jpg',
+			    replace:'_over.jpg'
+			});
+			*/
+			//add animation
+			$('#rollover-images img').hover(function(){
+				this.src = this.src.replace('.jpg','_over.jpg');	
+			},function(){
+				this.src = this.src.replace('_over','');
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>jQuery.Preload&nbsp;<strong>by Ariel Flesler</strong></h1>
+	<h2 class="title">"Rollover Mode" Demo</h2>
+	<div id="rollover-images">
+		<img src="img/yellow.jpg" />
+		<img src="img/button2.jpg" />
+		<img src="img/number.jpg" />
+		<img src="img/background.jpg" />
+		<img src="img/button.jpg" />
+		<img src="img/focus.jpg" />
+	</div>
+	<div id="links">
+		<h3>Links</h3>
+		<ul>
+			<li><a target="_blank" href="http://plugins.jquery.com/project/Preload">Project Page</a></li>
+			<li><a target="_blank" href="http://flesler.blogspot.com/2008/01/jquerypreload.html">Blog entry</a></li>
+			<li><a rel="sibling" href="url.html">URL Mode</a><span class="mark">&lt;&lt;</span></li>
+			<li><a rel="sibling" href="placeholder.html">Placeholder Mode</a><span class="mark">&lt;&lt;</span></li>
+			<li><a rel="sibling" href="link.html">Link Mode</a><span class="mark">&lt;&lt;</span></li>
+		</ul>
+	</div>
+	<div id="code-sample">
+		<h3>Code Sample</h3>
+		<pre >$.preload( '#images img', {
+    find: '.jpg',
+    replace: '_over.jpg'
+});
+       same as
+
+$('#images a').preload({
+    find: '.jpg',
+    replace: '_over.jpg'
+});</pre>
+	</div>
+</body>
+</html>

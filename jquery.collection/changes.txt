@@ -1,0 +1,27 @@
+1.0.4
+[Change]
+- Relicensed to MIT+GPL.
+[Òptimization]
+- the function 'extend' was being added twice to $.collection.fn (one with extend, and one with include).
+[Fix]
+- instanceof is not used anymore, caused memory leaks in IE, kudos to vOGRe.
+
+1.0.3
+[Fix]
+- pushStack might have failed in some cases.
+
+1.0.2
+[Fix]
+- Small fix for pushStack
+
+1.0.1
+- The static methods, copied from $.collection to its subclasses, have been exposed as $.collection.statics.
+	This is a string which by now is 'extend,build,include,implement'. New methods can be concatenated.
+	If desired, one could add the line $.collection.statics = $.collection.statics.split(',') and use it as an array.
+- As implied in the previous item, $.collection got a new function called 'implement'.
+- The comma separated method names given to the function include(), can have spaces near the commas, now.
+- Converted the README into a humble API.
+- Removed queue and dequeue, they don't seem to work reliably.
+
+1.0.0
+- First release, check the README to see the features.

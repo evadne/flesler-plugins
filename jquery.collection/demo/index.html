@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.Collection</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.collection.js"></script>
+	<script type="text/javascript">		
+		/**
+		 * Note: $.collection is a valid collection class itself, it gathers the arguments received into the collection.
+		 */	
+		/**
+		 * Example of a collection for numbers
+		 */
+		$.number = $.collection.build();
+		$.number.fn.sum = function(){//sum returns the sum of all it's items
+			var n = 0;
+			this.each(function(){
+				n += this;
+			});
+			return n;
+		};
+		 $.number(1,2,3,4).add(5).not(function(){
+		    return this <= 2;
+		 }).sum() == 12 || alert('bad 1st');//yields --> 12 ( 3 + 4 + 5 )
+		
+		/**
+		 * Example of a collection that imports methods from Array.
+		 */
+		$.array = $.collection.build();
+		$.array.fn.include( Array.prototype, 'join,concat,push,pop,shift,unshift' );
+		
+		var $arr = $.array('I','like','xyz','jQuery').add('very').not('xyz');
+		$arr.push( 'much' );		
+		$arr.join(' ') == 'I like jQuery very much' || alert('bad 2nd');// yields --> 'I like jQuery very much'
+		
+		/**
+		 * Example of a collection of nodes.
+		 */
+		var Nodes = $.collection.build();//no need to save the collection inside jQuery.
+		Nodes.fn.init = function( elems ){//look for the elements and add them to the collection
+			return this.setArray( $.makeArray(document.getElementsByTagName(elems)) );
+		};
+		window.onload = function(){		
+			window.nodes = Nodes('body').add('script').attr('className','node');// yields --> [ <body>, <script>, <script> ]
+		};
+		
+		var Users = $.collection.build();
+		Users.fn.init = function( name, role ){
+		  return this.setArray([{
+		     name: name,
+		     role: role
+		  }]);
+		};
+		Users.fn.getByRole = function( role ){
+		   return this.filter(function(){
+		     return this.role == role;
+		   });
+		};
+		var employees = Users('Joe','Moderator').add('Sally','Administrator');
+		employees.getByRole('Administrator');
+		
+		function Person( name, age ){
+			this.name = name;
+			if( age )
+				this.age = age;
+		};
+		var People = $.collection.build();
+		People.fn.init = function(){//define a function initializer
+			return this.setArray($.map( arguments, function(name){
+				return new Person(name);
+			}));
+		};
+		$('merry','sam','pippin').eq(1);//[{name:'sam'}]
+		
+		People.fn.byName = function( name ){
+			return this.filter(function(){
+				return this.name == name;
+			});
+		};
+		
+		People('john','jane').byName('jane');//[{name:'jane'}]
+		
+		var AgePeople = People.build();//inherit
+		AgePeople.fn.init = function(){//rewrite the init
+			return this.setArray($.map( arguments, function(p){
+				return new Person(p[0],p[1]);
+			}));
+		};
+		AgePeople.fn.sortByAge = function(){
+			return this.pushStack(this.get().sort(function( a, b ){
+				return a.age - b.age;
+			}));
+		};
+		
+		AgePeople( ['rex', 32], ['stan', 25] ).sortByAge();//[ {name:'stan',age:25}, {name:'rex',age:32} ] 
+	</script>
+	<style type="text/css">
+		body{
+			padding:5px;
+			height:1600px;
+			background:#EEE;
+		}
+		ul,li,h1,h2,h3,p{
+			list-style:none;
+			padding:0;
+			margin:0;
+		}
+		#links{
+			border:1px solid black;
+			display:block;
+			padding:10px;
+			position:relative;
+			margin:15px 0;
+			width:115px;
+		}
+		h3{
+			margin-bottom:5px;
+		}
+		strong{
+			font-size:13px;
+		}
+		.message{
+			font-weight:bolder;
+			margin-top:10px;
+		}
+	</style>
+</head>
+<body>
+	<h1>jQuery.Collection&nbsp;<strong>by Ariel Flesler</strong></h1>
+	<p class="message">Check the source for a few examples, this demo is under construction :)</p>
+	<div id="links">
+		<h3>Links</h3>
+		<ul>
+			<li><a target="_blank" href="http://plugins.jquery.com/project/Collection">Project Page</a></li>
+			<li><a target="_blank" href="http://flesler.blogspot.com/2008/01/jquerycollection.html">Blog entry</a></li>
+		</ul>
+	</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+	<title>jQuery.Modularize</title>
+	<meta name="keywords" content="javascript, jquery, plugins, modularize, modules, packages, ariel, flesler" />
+	<meta name="description" content="Demo of jQuery.Modularize. A plugin that enables modular methods on jQuery, made by Ariel Flesler." />
+	<meta name="robots" content="index,follow" />
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="../jquery.modularize.js"></script>
+</head>
+<body>
+	<h1>jQuery.Modularize&nbsp;<strong>by Ariel Flesler</strong></h1>
+	
+	<div id="links" class="part">
+		<h3>Links</h3>
+		<ul>
+			<li><a target="_blank" href="http://plugins.jquery.com/project/Modularize">Project Page</a></li>
+		</ul>
+	</div>
+	<p>If you are using Firefox with Firebug, check the console, else the results will be shown here.</p>
+	<script type="text/javascript" src="jquery.dummy.js"></script>
+	<script type="text/javascript">
+		/**
+		 * Note that jquery.dummy.js is just a demo, not a real plugin.
+		 * don't expect the methods to make sense.
+		 */
+		$('meta').dummy('original dummy method')
+				 .dummy().size()
+				 .dummy().cssClass( 'magic-meta' )
+				 .dummy().cssClass().remove( 'magic-meta' );
+	</script>
+</body>
+</html>
