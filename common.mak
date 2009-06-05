@@ -18,7 +18,9 @@ $(ZIP): $(ZIP_FILES)
 	zip -r9 $(ZIP) $(ZIP_FILES)
 
 $(SRC):
-	# cat $(SRC) | $(add-version) > $(SRC)
+	cp $(SRC) temp
+	cat temp | $(add-version) | $(add-date) > $(SRC)
+	rm temp
 	
 $(SRCV):$(SRC)
 	cp $(SRC) $(SRCV)
@@ -34,8 +36,16 @@ $(MINV):$(MIN)
 deploy:$(ZIP) $(SRCV) $(MINV)
 
 # ---Replacements--- #
+
+# Version
 define add-version
-@sed -e 's/^\(.*@version \)[0-9.]\+\(.*\)$|/\1$(VER)\2/'
+sed -e 's/^\(.*@version \)[0-9.]\+\(.*\)$|/\1$(VER)\2/'
+endef
+
+# Date
+TODAY=${shell date +%m\\/%d\\/%Y}
+define add-date
+sed -e 's/^\(.*Date: \)[0-9/]\+\(.*\)$|/\1$(TODAY)\2/'
 endef
 
 # ---Cleaning--- #
@@ -48,4 +58,4 @@ endef
 clean:
 	$(cmdclean)
 
-.PHONY: clean deploy min
+.PHONY: clean deploy min $(SRC)
