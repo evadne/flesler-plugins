@@ -2,7 +2,7 @@
  * jQuery.ScrollTo
  * Copyright (c) 2007-2009 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
  * Dual licensed under MIT and GPL.
- * Date: 5/25/2009
+ * Date: 06/05/2009
  *
  * @projectDescription Easy element scrolling using jQuery.
  * http://flesler.blogspot.com/2007/10/jqueryscrollto.html

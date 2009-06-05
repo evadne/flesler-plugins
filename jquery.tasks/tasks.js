@@ -7,7 +7,7 @@
  * @projectDescription Sequential and parallel tasks
  *
  * @author Ariel Flesler
- * @version 1.0
+ * @version 1.0.0
  */
 ;(function( scope ){
 	

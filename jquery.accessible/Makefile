@@ -1,2 +1,2 @@
-VER=1.4.2
+VER=0.1
 include ../common.mak

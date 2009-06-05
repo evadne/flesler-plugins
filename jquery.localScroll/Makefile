@@ -1,4 +1,3 @@
-PLUGIN=localScroll
 VER=1.2.7
 
 SO_NAME=jquery.scrollTo

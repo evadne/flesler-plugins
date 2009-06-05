@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery.Broadcast
  * Copyright (c) 2009 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
  * Dual licensed under MIT and GPL.

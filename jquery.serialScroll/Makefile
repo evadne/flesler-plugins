@@ -1,4 +1,3 @@
-PLUGIN=serialScroll
 VER=1.2.1
 
 SO_NAME=jquery.scrollTo

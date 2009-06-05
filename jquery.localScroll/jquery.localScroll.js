@@ -2,7 +2,7 @@
  * jQuery.LocalScroll
  * Copyright (c) 2007-2009 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
  * Dual licensed under MIT and GPL.
- * Date: 3/11/2009
+ * Date: 06/05/2009
  *
  * @projectDescription Animated scrolling navigation, using anchors.
  * http://flesler.blogspot.com/2007/10/jquerylocalscroll-10.html

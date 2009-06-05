@@ -1,4 +1,4 @@
-/**
+/*!
  * jQuery.Modularize
  * Copyright (c) 2008 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
  * Dual licensed under MIT and GPL.

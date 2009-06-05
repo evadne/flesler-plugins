@@ -4,19 +4,14 @@
  * Dual licensed under MIT and GPL.
  * Date: 2/28/2008
  *
- * @projectDescription Easy element scrolling using jQuery.
- * http://flesler.blogspot.com/2007/10/jqueryscrollto.html
- * Tested with jQuery 1.2.1. On FF 2.0.0.11, IE 6, Opera 9.22 and Safari 3 beta. on Windows.
+ * @projectDescription
  *
  * @author Ariel Flesler
- * @version 1.3.3
+ * @version 1.0.0
  *
  * @id jQuery.wizard
  * @id jQuery.fn.wizard
- * @param {String, Number, DOMElement, jQuery, Object} target Where to scroll the matched elements.
  * @return {jQuery} Returns the same jQuery object, for chaining.
- *
- * @example $('div').wizard( 340 );
  */
 ;(function( $ ){
 	
