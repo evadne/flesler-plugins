@@ -26,9 +26,8 @@ deploy:$(ZIP) $(SRCV) $(MINV)
 # Source File
 
 $(SRC):
-	cp $(SRC) temp
-	cat temp | $(add-version) | $(add-date) > $(SRC)
-	rm temp
+	$(add-version) -i $(SRC)
+	$(add-date) -i $(SRC)
 
 src:$(SRC)
 
