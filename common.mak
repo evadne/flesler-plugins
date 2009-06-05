@@ -1,5 +1,5 @@
 NAME=${shell basename $(value PWD)}
-VER?=0.0.1
+VER?=unversioned
 
 SRC=$(NAME).js
 MIN=$(NAME)-min.js
@@ -13,9 +13,6 @@ ZIP=$(VER_NAME).zip
 ZIP_FILES += $(SRC) $(MIN) changes.txt
 
 all: deploy
-
-bbb:
-	echo $(NAME)
 
 # Deploy Files
 
