@@ -1,3 +1,8 @@
+1.1.0
+[Feature]
+- The filter '*' can be passed and all the registered filters (to that type) will be used.
+- The filtering function is exposed as $.dataFilter.run(type, filter, data). It returns the filtered data.
+
 1.0.1
 [Bug]
 - The type 'html' was missing.

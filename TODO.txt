@@ -1,8 +1,8 @@
 Broadcast & Tasks
-- RELEASE IT!
+- RELEASE THEM!
 
-XHR and AjaxFilter
-- Announce them on the blog
+AjaxFilter
+- There're unreleased changes
 
 GENERAL
 - Fix uses of nodeName as it won't work on xml+xhtml (Preload and Listen surely have)
