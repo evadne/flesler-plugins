@@ -2,12 +2,12 @@
  * jQuery.AjaxFilter
  * Copyright (c) 2008 Ariel Flesler - aflesler(at)gmail(dot)com | http://flesler.blogspot.com
  * Dual licensed under MIT and GPL.
- * Date: 8/7/2008
+ * Date: 06/07/2009
  *
  * @projectDescription Registry of filters for AJAX responses.
  *
  * @author Ariel Flesler
- * @version 1.0.1
+ * @version 1.1.0
  */
 ;(function( $ ){
 	
