@@ -1,3 +1,10 @@
+# Makefile to build all plugins
+# Author: Ariel Flesler
+# --
+# Runs on a linux-based enviroment (Cygwin can be used on Windows).
+# In order to minify, it requires the YUI compressor.
+# You must set the $YUI enviroment variable with the jar's path.
+
 NAME=${shell basename $(value PWD)}
 VER?=unversioned
 
