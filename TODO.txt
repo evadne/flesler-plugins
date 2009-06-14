@@ -9,8 +9,6 @@ GENERAL
 
 SerialScroll
 - The event goto can accept a DOMElement (an item).
-- Let the 'this' of the callbacks be the settings object.
-- Thus make each instance of the plugin have a clone of the settings.
 - Snippet to highlight the active link.
 
 FastTrigger
