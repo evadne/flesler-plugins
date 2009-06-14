@@ -31,7 +31,7 @@ zip:$(ZIP)
 deploy:$(ZIP) $(SRCV) $(MINV)
 	
 # Source File
-
+# $(SRC) is not .PHONY so you need to do make -B to make it run
 $(SRC):
 	$(add-version) -i $(SRC)
 	$(add-date) -i $(SRC)
@@ -74,4 +74,4 @@ endef
 clean:
 	$(cmdclean)
 
-.PHONY: clean deploy min $(SRC)
+.PHONY: clean deploy min

@@ -1,6 +1,6 @@
+1.2.2
 [Enhancement]
-- $.serialScroll returns the element, so there's no need to deal with $.scrollTo.window() later.
-- Removed the check that avoid re-scrolling to the actual index, re-scrolling is useful sometimes.
+- Removed the check that avoids re-scrolling to the same index, this might be desirable sometimes.
 - The settings object is exposed in the onBefore as the 'this'.
 
 1.2.1

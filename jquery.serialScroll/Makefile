@@ -1,4 +1,4 @@
-VER=1.2.1
+VER=1.2.2
 
 SO_NAME=jquery.scrollTo
 SO_ROOT=../$(SO_NAME)
@@ -15,3 +15,5 @@ $(SO_SRC):
 $(SO_MIN):
 	cd $(SO_ROOT) && make min
 	cp $(SO_ROOT)/$@ $@
+	
+cmdclean += rm -f $(SO_SRC) $(SO_MIN);
