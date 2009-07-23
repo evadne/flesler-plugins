@@ -67,11 +67,11 @@ endef
 # ---Cleaning--- #
 
 # Can be extended
-define cmdclean
+define cmd-clean
 rm -f $(MIN) $(SRCV) $(MINV) $(ZIP);
 endef
 
 clean:
-	$(cmdclean)
+	$(cmd-clean)
 
 .PHONY: clean deploy min
