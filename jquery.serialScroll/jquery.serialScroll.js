@@ -123,17 +123,14 @@
 				e.data += active;
 				jump( e, this );
 			};
-			function jump( e, button ){
-				if( !isNaN(button) ){// initial or special call from the outside $(container).trigger('goto',[index]);
-					e.data = button;
-					button = pane;
-				}
+			function jump( e, pos ){
+				if( isNaN(pos) )
+					pos = e.data;
 
 				var
-					pos = e.data, n,
-					real = e.type, // is a real event triggering ?
+					n, real = e.type, // is a real event triggering ?
 					$items = settings.exclude ? getItems().slice(0,-settings.exclude) : getItems(),// handle a possible exclude
-					limit = $items.length,
+					limit = $items.length - 1,
 					elem = $items[pos],
 					duration = settings.duration;
 
@@ -146,13 +143,13 @@
 				}
 
 				if( !elem ){ // exceeded the limits
-					n = pos < 0 ? 0 : limit - 1;
+					n = pos < 0 ? 0 : limit;
 					if( active != n )// we exceeded for the first time
 						pos = n;
 					else if( !settings.cycle )// this is a bad case
 						return;
 					else
-						pos = limit - n - 1;// invert, go to the other side
+						pos = limit - n;// invert, go to the other side
 					elem = $items[pos];
 				}
 

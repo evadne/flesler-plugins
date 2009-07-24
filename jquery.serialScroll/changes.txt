@@ -1,3 +1,6 @@
+[Enhancement]
+- Removed a redundant code
+
 1.2.2
 [Enhancement]
 - Removed the check that avoids re-scrolling to the same index, this might be desirable sometimes.
