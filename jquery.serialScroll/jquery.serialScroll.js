@@ -69,11 +69,17 @@
 				nav = settings.navigation, // save it now to make the code shorter
 				timer; // holds the interval id
 
-			if( !lazy )// if not lazy, save the items now
+			// If no match, just ignore
+			if (!pane)
+				return;
+				
+			// if not lazy, save the items now
+			if( !lazy )
 				items = getItems();
 
+			// generate an initial call
 			if( settings.force )
-				jump( {}, active );// generate an initial call
+				jump( {}, active );
 
 			// Button binding, optional
 			$(settings.prev||[], context).bind( event, -step, move );

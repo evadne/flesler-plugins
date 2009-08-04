@@ -1,5 +1,6 @@
 [Enhancement]
 - Removed a redundant code
+- If there's no matched container ('target') serialScroll just ignores the call.
 
 1.2.2
 [Enhancement]
