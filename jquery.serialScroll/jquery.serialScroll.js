@@ -78,7 +78,7 @@
 				items = getItems();
 
 			// generate an initial call
-			if( settings.force )
+			if( settings.force || auto )
 				jump( {}, active );
 
 			// Button binding, optional

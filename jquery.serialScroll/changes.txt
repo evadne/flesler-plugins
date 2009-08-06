@@ -1,6 +1,7 @@
 [Enhancement]
 - Removed a redundant code
 - If there's no matched container ('target') serialScroll just ignores the call.
+- The setting 'interval' implicitely assumes 'force' as true.
 
 1.2.2
 [Enhancement]
