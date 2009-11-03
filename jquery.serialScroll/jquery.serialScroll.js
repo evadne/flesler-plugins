@@ -21,6 +21,8 @@
  */
 ;(function( $ ){
 
+	var NAMESPACE = '.serialScroll';
+	
 	var $serialScroll = $.serialScroll = function( settings ){
 		return $(window).serialScroll( settings );
 	};
@@ -57,20 +59,31 @@
 		return this.each(function(){
 			var 
 				settings = $.extend( {}, $serialScroll.defaults, options ),
-				event = settings.event, // this one is just to get shorter code when compressed
-				step = settings.step, // ditto
-				lazy = settings.lazy, // ditto
-				context = settings.target ? this : document, // if a target is specified, then everything's relative to 'this'.
-				$pane = $(settings.target || this, context),// the element to be scrolled (will carry all the events)
-				pane = $pane[0], // will be reused, save it into a variable
-				items = settings.items, // will hold a lazy list of elements
-				active = settings.start, // active index
-				auto = settings.interval, // boolean, do auto or not
-				nav = settings.navigation, // save it now to make the code shorter
-				timer; // holds the interval id
+				// this one is just to get shorter code when compressed
+				event = settings.event, 
+				// ditto
+				step = settings.step, 
+				// ditto
+				lazy = settings.lazy, 
+				// if a target is specified, then everything's relative to 'this'.
+				context = settings.target ? this : document, 
+				// the element to be scrolled (will carry all the events)
+				$pane = $(settings.target || this, context),
+				// will be reused, save it into a variable
+				pane = $pane[0], 
+				// will hold a lazy list of elements
+				items = settings.items, 
+				// index of the currently selected item
+				active = settings.start, 
+				// boolean, do automatic scrolling or not
+				auto = settings.interval, 
+				// save it now to make the code shorter
+				nav = settings.navigation, 
+				// holds the interval id
+				timer; 
 
 			// If no match, just ignore
-			if (!pane)
+			if(!pane)
 				return;
 				
 			// if not lazy, save the items now
@@ -86,35 +99,41 @@
 			$(settings.next||[], context).bind( event, step, move );
 
 			// Custom events bound to the container
-			if( !pane.ssbound )// don't bind more than once
+			if( !pane.ssbound )
 				$pane
-					.bind('prev.serialScroll', -step, move ) // you can trigger with just 'prev'
-					.bind('next.serialScroll', step, move ) // f.e: $(container).trigger('next');
-					.bind('goto.serialScroll', jump ); // f.e: $(container).trigger('goto', 4 );
+					 // You can trigger with just 'prev'
+					.bind('prev'+NAMESPACE, -step, move )
+					// f.e: $(container).trigger('next');
+					.bind('next'+NAMESPACE, step, move )
+					// f.e: $(container).trigger('goto', 4 );
+					.bind('goto'+NAMESPACE, jump );
 
 			if( auto )
 				$pane
-					.bind('start.serialScroll', function(e){
+					.bind('start'+NAMESPACE, function(e){
 						if( !auto ){
 							clear();
 							auto = true;
 							next();
 						}
 					 })
-					.bind('stop.serialScroll', function(){// stop a current animation
+					.bind('stop'+NAMESPACE, function(){
 						clear();
 						auto = false;
 					});
 
-			$pane.bind('notify.serialScroll', function(e, elem){// let serialScroll know that the index changed externally
+			// Let serialScroll know that the index changed externally
+			$pane.bind('notify'+NAMESPACE, function(e, elem){
 				var i = index(elem);
 				if( i > -1 )
 					active = i;
 			});
 
-			pane.ssbound = true;// avoid many bindings
+			// Avoid many bindings
+			pane.ssbound = true;
 
-			if( settings.jump )// can't use jump if using lazy items and a non-bubbling event
+			// Can't use jump if using lazy items and a non-bubbling event
+			if( settings.jump )
 				(lazy ? $pane : getItems()).bind( event, function( e ){
 					jump( e, index(e.target) );
 				});
@@ -129,53 +148,66 @@
 				e.data += active;
 				jump( e, this );
 			};
+
 			function jump( e, pos ){
 				if( isNaN(pos) )
 					pos = e.data;
 
-				var
-					n, real = e.type, // is a real event triggering ?
-					$items = settings.exclude ? getItems().slice(0,-settings.exclude) : getItems(),// handle a possible exclude
+				var	n, 
+					// Is a real event triggering ?
+					real = e.type, 
+					// Handle a possible exclude
+					$items = settings.exclude ? getItems().slice(0,-settings.exclude) : getItems(),
 					limit = $items.length - 1,
 					elem = $items[pos],
 					duration = settings.duration;
 
-				if( real )// real event object
+				if( real )
 					e.preventDefault();
 
 				if( auto ){
-					clear();// clear any possible automatic scrolling.
+					// clear any possible automatic scrolling.
+					clear();
 					timer = setTimeout( next, settings.interval ); 
 				}
 
-				if( !elem ){ // exceeded the limits
+				// exceeded the limits
+				if( !elem ){
 					n = pos < 0 ? 0 : limit;
-					if( active != n )// we exceeded for the first time
+					// we exceeded for the first time
+					if( active !== n )
 						pos = n;
-					else if( !settings.cycle )// this is a bad case
+					// this is a bad case
+					else if( !settings.cycle )
 						return;
+					// invert, go to the other side
 					else
-						pos = limit - n;// invert, go to the other side
+						pos = limit - n;
 					elem = $items[pos];
 				}
 
-				if( !elem || settings.lock && $pane.is(':animated') || // no animations while busy
+				// no animations while busy
+				if( !elem || settings.lock && $pane.is(':animated') ||
 					real && settings.onBefore &&
+					// Allow implementors to cancel scrolling
 					settings.onBefore(e, elem, $pane, getItems(), pos) === false ) return;
 
 				if( settings.stop )
-					$pane.queue('fx',[]).stop();// remove all its animations
+					// remove all running animations
+					$pane.queue('fx',[]).stop();
 
 				if( settings.constant )
-					duration = Math.abs(duration/step * (active - pos ));// keep constant velocity
+					// keep constant velocity
+					duration = Math.abs(duration/step * (active - pos));
 
-				$pane
-					.scrollTo( elem, duration, settings )// do scroll
-					.trigger('notify.serialScroll',[pos]);// in case serialScroll was called on this elem more than once.
+				$pane.scrollTo( elem, duration, settings );
+				
+				// in case serialScroll was called on this elemement more than once.
+				trigger('notify', pos);
 			};
 
-			function next(){// I'll use the namespace to avoid conflicts
-				$pane.trigger('next.serialScroll');
+			function next(){
+				trigger('next');
 			};
 
 			function clear(){
@@ -185,11 +217,23 @@
 			function getItems(){
 				return $( items, pane );
 			};
-
+			
+			// I'll use the namespace to avoid conflicts
+			function trigger(event){
+				$pane.trigger(
+					event+NAMESPACE,
+					[].slice.call(arguments,1)
+				);
+			}
+			
 			function index( elem ){
-				if( !isNaN(elem) ) return elem;// number
+				// Already a number
+				if( !isNaN(elem) )
+					return elem;
+
 				var $items = getItems(), i;
-				while(( i = $items.index(elem)) == -1 && elem != pane )// see if it matches or one of its ancestors
+				// See if it matches or one of its ancestors
+				while(( i = $items.index(elem)) === -1 && elem !== pane )
 					elem = elem.parentNode;
 				return i;
 			};
