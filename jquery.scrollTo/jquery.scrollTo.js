@@ -62,7 +62,8 @@
 
 	$scrollTo.defaults = {
 		axis:'xy',
-		duration: parseFloat($.fn.jquery) >= 1.3 ? 0 : 1
+		duration: parseFloat($.fn.jquery) >= 1.3 ? 0 : 1,
+		limit:true
 	};
 
 	// Returns the element that needs to be animated to scroll the window.
@@ -165,7 +166,7 @@
 				}
 
 				// Number or 'number'
-				if( /^\d+$/.test(attr[key]) )
+				if( settings.limit && /^\d+$/.test(attr[key]) )
 					// Check the limits
 					attr[key] = attr[key] <= 0 ? 0 : Math.min( attr[key], max );
 
