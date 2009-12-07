@@ -15,20 +15,21 @@
 
 ;jQuery.parse = function(token) {
 
-	// Handle positive & negative numbers (integer or float)
-	// Handle hexadecimal numbers: 0xFF -> 255
-	// Handle exponential notation: 1e5 -> 100000
-	if (token)
-		var num = +token;
-	
-	if (!isNaN(num))
-		return num;
-
 	// Handle booleans
 	if (token === 'true')
 		return true;
 	if (token === 'false')
 		return false;
+
+	// Skip none-strings or empty ones
+	if (token && typeof token === 'string')
+		// Handle positive & negative numbers (integer or float)
+		// Handle hexadecimal numbers: 0xFF -> 255
+		// Handle exponential notation: 1e5 -> 100000
+		var num = +token;
+	
+	if (!isNaN(num))
+		return num;
 
 	// Everything else remains untouched
 	return token;		
