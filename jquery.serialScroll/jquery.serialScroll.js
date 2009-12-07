@@ -39,7 +39,7 @@
 		cycle:true, // cycle endlessly ( constant velocity )
 		constant:true // use contant speed ?
 		/*
-		navigation:null,// if specified, it's a selector a collection of items to navigate the container
+		navigation:null,// if specified, it's a selector to a collection of items to navigate the container
 		target:window, // if specified, it's a selector to the element to be scrolled.
 		interval:0, // it's the number of milliseconds to automatically go to the next
 		lazy:false,// go find the elements each time (allows AJAX or JS content, or reordering)
