@@ -1,3 +1,7 @@
+1.0.1pre
+[Feature]
+- Non-String values pass through without modifications
+
 1.0.0
 [Feature]
 - jQuery.parse evaluates numbers, booleans, everything else stays the same

@@ -6,7 +6,7 @@
  *
  * @projectDescription Simple string evaluation.
  * @author Ariel Flesler
- * @version 1.0.0
+ * @version 1.0.1pre
  *
  * @id jQuery.parse
  * @param {String} token The string to evaluate.
