@@ -187,7 +187,7 @@
 				}
 
 				// no animations while busy
-				if( !elem || settings.lock && $pane.is(':animated') ||
+				if( !elem || settings.lock && $pane._scrollable().is(':animated') ||
 					real && settings.onBefore &&
 					// Allow implementors to cancel scrolling
 					settings.onBefore(e, elem, $pane, getItems(), pos) === false ) return;
