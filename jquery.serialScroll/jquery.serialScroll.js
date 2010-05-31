@@ -194,7 +194,7 @@
 
 				if( settings.stop )
 					// remove all running animations
-					$pane.queue('fx',[]).stop();
+					$pane._scrollable().stop(true);
 
 				if( settings.constant )
 					// keep constant velocity

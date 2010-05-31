@@ -108,7 +108,7 @@
 			return;
 
 		if( settings.stop )
-			$target.stop(true); // remove all its animations
+			$target._scrollable().stop(true); // remove all its animations
 
 		if( settings.hash ){
 			var attr = elem.id == id ? 'id' : 'name',
