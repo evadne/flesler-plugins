@@ -1,5 +1,9 @@
 [Enhancement]
 - Limit calculations can be disabled by setting the option 'limit' to false.
+[Misc]
+- Removed support for the deprecated setting 'speed'
+
+TODO: Allow duration to be a function
 
 1.4.2
 [Feature]

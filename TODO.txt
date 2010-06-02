@@ -16,3 +16,6 @@ FastTrigger
 
 Listen
 - nodeName.toUpperCase() so it works with application/xhtml+xml
+
+ScrollTo
+- Allow the duration to be a function

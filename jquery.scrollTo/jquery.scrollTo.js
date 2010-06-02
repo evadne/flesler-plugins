@@ -22,10 +22,10 @@
  *		- A hash { top:x, left:y }, x and y can be any kind of number/string like above.
  *		- A percentage of the container's dimension/s, for example: 50% to go to the middle.
  *		- The string 'max' for go-to-end. 
- * @param {Number} duration The OVERALL length of the animation, this argument can be the settings object instead.
+ * @param {Number, Function} duration The OVERALL length of the animation, this argument can be the settings object instead.
  * @param {Object,Function} settings Optional set of settings or the onAfter callback.
  *	 @option {String} axis Which axis must be scrolled, use 'x', 'y', 'xy' or 'yx'.
- *	 @option {Number} duration The OVERALL length of the animation.
+ *	 @option {Number, Function} duration The OVERALL length of the animation.
  *	 @option {String} easing The easing method for the animation.
  *	 @option {Boolean} margin If true, the margin of the target element will be deducted from the final position.
  *	 @option {Object, Number} offset Add/deduct from the end position. One number for both axes or { top:x, left:y }.
@@ -103,7 +103,7 @@
 			
 		settings = $.extend( {}, $scrollTo.defaults, settings );
 		// Speed is still recognized for backwards compatibility
-		duration = duration || settings.speed || settings.duration;
+		duration = duration || settings.duration;
 		// Make sure the settings are given right
 		settings.queue = settings.queue && settings.axis.length > 1;
 		
@@ -207,7 +207,6 @@
 
 		return Math.max( html[scroll], body[scroll] ) 
 			 - Math.min( html[size]  , body[size]   );
-			
 	};
 
 	function both( val ){
